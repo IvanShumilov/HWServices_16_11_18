@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <TextView
+        android:id="@+id/textView1Act2"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        tools:text="TextView1"
+        android:layout_alignParentStart="true"
+        />
+
+    <TextView
+        android:id="@+id/textView2Act2"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        tools:text="TextView2"
+        android:layout_toEndOf="@+id/textView1Act2"
+        android:layout_below="@+id/textView1Act2"
+        />
+
+    <TextView
+        android:id="@+id/textView3Act2"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        tools:text="TextView3"
+        android:layout_below="@+id/textView2Act2"
+        android:layout_alignParentEnd="true"
+        />
+
+    <Button
+        android:id="@+id/getDateBind"
+        android:layout_width="198dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/clearBtnAct2"
+        android:layout_alignBottom="@+id/textView3Act2"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="157dp"
+        android:layout_marginEnd="26dp"
+        android:layout_marginBottom="2dp"
+        android:layout_toStartOf="@+id/textView3Act2"
+        android:text="@string/getBindDate" />
+
+    <Button
+        android:id="@+id/clearBtnAct2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="195dp"
+        android:text="@string/clear" />
+
+
+</RelativeLayout>
