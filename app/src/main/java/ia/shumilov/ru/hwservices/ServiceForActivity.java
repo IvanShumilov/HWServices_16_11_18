@@ -8,6 +8,7 @@ import android.os.IBinder;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import static ia.shumilov.ru.hwservices.MainActivity.MY_FILTER;
 
@@ -15,7 +16,7 @@ public class ServiceForActivity extends Service {
     public static final String MY_ACTION = "ia.shumilov.ru.my.action";
     private Intent mIntent = new Intent();
     private IBinder mBinder = new LocalBinder();
-    private volatile int i;
+    private volatile AtomicInteger i = new AtomicInteger();
 
     public ServiceForActivity() {
     }
@@ -37,7 +38,7 @@ public class ServiceForActivity extends Service {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                for (i = 0; i < 1_000_000; i++) {
+                for (i.set(0); i.get() < 1_000_000; i.addAndGet(1)) {
                     sendBroadCast("message from broadcast number " + i);
                     try {
                         Thread.sleep(1000);
@@ -45,9 +46,9 @@ public class ServiceForActivity extends Service {
                         e.printStackTrace();
                     }
                 }
+                stopSelf();
             }
         }).start();
-        stopSelf();
         return START_NOT_STICKY;
     }
 

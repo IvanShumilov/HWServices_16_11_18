@@ -19,8 +19,8 @@ public class MainActivity extends AppCompatActivity {
     private Button mNextActivityBtn;
     private Button mFirstActBtn;
     private Button mThridActBtn;
-    public TextView mTextView1;
-    public Button mFourthActBtn;
+    private TextView mTextView1;
+    private Button mFourthActBtn;
     private BroadcastReceiver mReciverBroad;
     public static final IntentFilter mIntentFilter = new IntentFilter(MY_ACTION);
     public static final String MY_FILTER = "ru.shumilov.broadcast.Message.Activity_1_3";
@@ -58,7 +58,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 mStartServiceBtn.setEnabled(false);
-                registerBroadcastReceiver();
                 startService(new Intent(getApplicationContext(), ServiceForActivity.class));
             }
         });

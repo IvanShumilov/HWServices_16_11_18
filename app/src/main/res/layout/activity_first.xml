@@ -10,7 +10,6 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        tools:ignore="Suspicious0dp"
         tools:text="TextView1" />
 
     <TextView
@@ -18,7 +17,6 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        tools:ignore="Suspicious0dp"
         tools:text="TextView2" />
 
     <TextView
@@ -26,7 +24,6 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        tools:ignore="Suspicious0dp"
         tools:text="TextView3" />
 
 </LinearLayout>

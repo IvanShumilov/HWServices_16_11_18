@@ -9,9 +9,15 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.util.Arrays;
+import java.util.List;
+
 
 public class SecondActivity extends Activity {
     private TextView textView1;
+    private TextView textView2;
+    private TextView textView3;
+    private List<TextView> list;
     private BindUtil bindUtil = new BindUtil();
 
 
@@ -23,11 +29,15 @@ public class SecondActivity extends Activity {
         Button getDateFromBind = findViewById(R.id.getDateBind);
         Button clear = findViewById(R.id.clearBtnAct2);
         textView1 = findViewById(R.id.textView1Act2);
+        textView2 = findViewById(R.id.textView2Act2);
+        textView3 = findViewById(R.id.textView3Act2);
+        list = Arrays.asList(textView1, textView2, textView3);
+
 
         clear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                textView1.setText("");
+                setTextAllTextView("");
             }
         });
         getDateFromBind.setOnClickListener(new View.OnClickListener() {
@@ -35,7 +45,7 @@ public class SecondActivity extends Activity {
             public void onClick(View v) {
                 if (bindUtil.isBound()) {
                     String msg = bindUtil.getBindMess();
-                    textView1.setText(msg);
+                    setTextAllTextView(msg);
                 }
             }
         });
@@ -60,8 +70,22 @@ public class SecondActivity extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
-        if(bindUtil.getConnection() == null){
+        if (bindUtil.getConnection() == null) {
             bindUtil.upConnect();
         }
+    }
+
+    private void setTextAllTextView(String msg) {
+        if (msg.equalsIgnoreCase("")) {
+            for (TextView view : list) {
+                view.setText(msg);
+            }
+        } else {
+            for (TextView view : list) {
+                String text = view.getText() + "\n" + msg;
+                view.setText(text);
+            }
+        }
+
     }
 }

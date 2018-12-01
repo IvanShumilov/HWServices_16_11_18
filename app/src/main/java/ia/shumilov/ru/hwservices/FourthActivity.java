@@ -8,10 +8,16 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class FourthActivity extends AppCompatActivity {
 
     private BindUtil bindUtil = new BindUtil();
     private TextView textView2;
+    private TextView textView1;
+    private TextView textView3;
+    private List<TextView> list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,10 +27,13 @@ public class FourthActivity extends AppCompatActivity {
         Button clearBtn = findViewById(R.id.clearBtnAct4);
         Button getDateFromBind = findViewById(R.id.getBindDataAct4);
         textView2 = findViewById(R.id.textView2Act4);
+        textView1 = findViewById(R.id.textView1Act4);
+        textView3 = findViewById(R.id.textView3Act4);
+        list = Arrays.asList(textView1, textView2, textView3);
         clearBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                textView2.setText("");
+                setTextAllTextView("");
             }
         });
 
@@ -32,9 +41,9 @@ public class FourthActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if(bindUtil.isBound()){
+                if (bindUtil.isBound()) {
                     String msg = bindUtil.getBindMess();
-                    textView2.setText(msg);
+                    setTextAllTextView(msg);
                 }
             }
         });
@@ -56,8 +65,21 @@ public class FourthActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        if(bindUtil.getConnection() == null){
+        if (bindUtil.getConnection() == null) {
             bindUtil.upConnect();
         }
+    }
+    private void setTextAllTextView(String msg) {
+        if (msg.equalsIgnoreCase("")) {
+            for (TextView view : list) {
+                view.setText(msg);
+            }
+        } else {
+            for (TextView view : list) {
+                String text = view.getText() + "\n" + msg;
+                view.setText(text);
+            }
+        }
+
     }
 }
